@@ -2,8 +2,6 @@
 /**
  * Fake Data Generator for Database
  * 
- * This script generates fake data for Employee, Office, and Transaction tables
- * using Philippine locale.
  */
 
 // Require Composer's autoloader
@@ -98,7 +96,7 @@ try {
         // Randomly decide whether to use employee's office or another office
         $officeId = $faker->boolean(70) ? $employeeOfficeId : $faker->randomElement($officeIds);
         
-        // Generate a random date in the past (not future)
+        // Generate a random date up to 2years in the past (not future)
         $datelog = $faker->dateTimeBetween('-2 years', 'now')->format('Y-m-d H:i:s');
         
         $actions = ['Create', 'Read', 'Update', 'Delete', 'Approve', 'Reject', 'Submit', 'Review'];
