@@ -14,9 +14,9 @@ use Faker\Factory as Faker;
 
 // Database connection parameters
 $host = 'localhost';
-$dbname = 'your_database';
-$username = 'your_username';
-$password = 'your_password';
+$dbname = 'ph_company';
+$username = 'root';
+$password = 'root';
 
 try {
     // Connect to the database
@@ -26,10 +26,14 @@ try {
     // Create a Faker instance with Philippine locale
     $faker = Faker::create('en_PH');
     
-    // Clear existing data (optional)
-    $pdo->exec("TRUNCATE TABLE transaction");
-    $pdo->exec("TRUNCATE TABLE employee");
-    $pdo->exec("TRUNCATE TABLE office");
+    // Clear existing data - using DELETE instead of TRUNCATE to avoid foreign key issues
+    // Delete in reverse order of dependencies
+    echo "Clearing existing data...\n";
+    $pdo->exec("SET FOREIGN_KEY_CHECKS = 0");
+    $pdo->exec("DELETE FROM transaction");
+    $pdo->exec("DELETE FROM employee");
+    $pdo->exec("DELETE FROM office");
+    $pdo->exec("SET FOREIGN_KEY_CHECKS = 1");
     
     echo "Generating fake data...\n";
     
