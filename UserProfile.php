@@ -4,18 +4,6 @@ require 'vendor/autoload.php';
 
 use Faker\Factory as Faker;
 
-$host = 'localhost';
-$dbname = 'ph_company';
-$username = 'root';
-$password = 'root';
-
-try {
-    $pdo = new PDO("mysql:host=$host;dbname=$dbname", $username, $password);
-    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-} catch (PDOException $e) {
-    die("Could not connect to the database $dbname :" . $e->getMessage());
-}
-
 // Function to generate random Filipino names
 function generateFullName() {
     $firstNames = ['Juan', 'Maria', 'Jose', 'Ana', 'Pedro', 'Luz', 'Ramon', 'Carmen', 'Alfonso', 'Isabel'];
@@ -55,7 +43,7 @@ function generateJobTitle() {
 }
 
 // Number of fake profiles to generate
-$numProfiles = 5; 
+$numProfiles = 5; // Change this to generate more profiles
 
 // Array to hold user profiles
 $userProfiles = [];
@@ -74,16 +62,6 @@ for ($i = 0; $i < $numProfiles; $i++) {
         'birthdate' => $birthdate,
         'jobTitle' => $jobTitle,
     ];
-
-    // Insert into database
-    $stmt = $pdo->prepare("INSERT INTO user_profiles (full_name, email, phone, birthdate, job_title) VALUES (:fullName, :email, :phone, :birthdate, :jobTitle)");
-    $stmt->execute([
-        ':fullName' => $fullName,
-        ':email' => $email,
-        ':phone' => $phone,
-        ':birthdate' => $birthdate,
-        ':jobTitle' => $jobTitle,
-    ]);
 }
 
 ?>
