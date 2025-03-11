@@ -54,7 +54,7 @@ function generateJobTitle() {
 }
 
 // Number of fake profiles to generate
-$numProfiles = 5; // Change this to generate more profiles
+$numProfiles = 5; 
 
 // Array to hold user profiles
 $userProfiles = [];
