@@ -2,7 +2,7 @@
 
 require 'vendor/autoload.php';
 
-use Faker\Factory as Faker;
+$faker = Faker\Factory::create();
 
 // Function to generate random Filipino names
 function generateFullName() {
@@ -26,6 +26,17 @@ function generateEmail($fullName) {
 // Function to generate random phone number
 function generatePhoneNumber() {
     return '+63 9' . rand(100000000, 999999999);
+}
+
+// Function to generate random complete address
+function generateAddress() {
+    $cities = ['Manila', 'Quezon City', 'Cebu City', 'Davao City', 'Zamboanga City', 'Taguig', 'Pasig', 'Makati', 'Bacolod', 'Iloilo'];
+    $provinces = ['Metro Manila', 'Cebu', 'Davao del Sur', 'Negros Occidental', 'Iloilo', 'Batangas', 'Laguna', 'Pangasinan', 'Bulacan', 'Rizal'];
+
+    $city = $cities[array_rand($cities)];
+    $province = $provinces[array_rand($provinces)];
+
+    return "Street Name, $city, $province";
 }
 
 // Function to generate random birthdate
@@ -52,6 +63,7 @@ for ($i = 0; $i < $numProfiles; $i++) {
     $fullName = generateFullName();
     $email = generateEmail($fullName);
     $phone = generatePhoneNumber();
+    $address = generateAddress();
     $birthdate = generateBirthdate();
     $jobTitle = generateJobTitle();
 
@@ -59,6 +71,7 @@ for ($i = 0; $i < $numProfiles; $i++) {
         'fullName' => $fullName,
         'email' => $email,
         'phone' => $phone,
+        'address' => $address,
         'birthdate' => $birthdate,
         'jobTitle' => $jobTitle,
     ];
@@ -84,6 +97,7 @@ for ($i = 0; $i < $numProfiles; $i++) {
                 <th>Full Name</th>
                 <th>Email Address</th>
                 <th>Phone Number</th>
+                <th>Complete Address</th>
                 <th>Birthdate</th>
                 <th>Job Title</th>
             </tr>
@@ -94,6 +108,7 @@ for ($i = 0; $i < $numProfiles; $i++) {
                     <td><?php echo $profile['fullName']; ?></td>
                     <td><?php echo $profile['email']; ?></td>
                     <td><?php echo $profile['phone']; ?></td>
+                    <td><?php echo $profile['address']; ?></td>
                     <td><?php echo $profile['birthdate']; ?></td>
                     <td><?php echo $profile['jobTitle']; ?></td>
                 </tr>
