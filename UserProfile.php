@@ -92,7 +92,7 @@ for ($i = 0; $i < $numProfiles; $i++) {
 <div class="container mt-5">
     <h2>Fake User Profiles</h2>
     <table class="table table-bordered">
-        <thead>
+        <thead class="thead-dark">
             <tr>
                 <th>Full Name</th>
                 <th>Email Address</th>

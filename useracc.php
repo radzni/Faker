@@ -30,7 +30,7 @@ function generateUUID() {
             <table class="table table-hover table-bordered">
                 <thead class="table-dark text-center">
                     <tr>
-                        <th>#</th>
+                        <th>#</th> <!-- number ng user -->
                         <th>User ID</th>
                         <th>Full Name</th>
                         <th>Email Address</th>
